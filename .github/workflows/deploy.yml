@@ -32,9 +32,9 @@ jobs:
           ssh -o 'StrictHostKeyChecking no' -o 'PubkeyAuthentication yes' -p ${{ env.SSH_PORT }} ${SSH_CONNECT}
           ssh -p ${{ env.SSH_PORT }} ${SSH_CONNECT} "\
               cd /mnt/borja/borja-ops-nginx-loadbalancer && \
-              sudo git reset --hard HEAD && \
-              sudo git pull origin ${{ env.DEPLOY_BRANCH }} && \
+              git reset --hard HEAD && \
+              git pull origin ${{ env.DEPLOY_BRANCH }} && \
               echo '==> Repository Updated!' && \
-              sudo docker service update --force ${{ env.SWARM_SERVICE }}
+              docker service update --force ${{ env.SWARM_SERVICE }}
               "
 
