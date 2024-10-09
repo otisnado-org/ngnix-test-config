@@ -29,7 +29,7 @@ jobs:
       - name: Deploy Update
         run: |
           export SSH_CONNECT=runner@${{ env.LB_DOMAIN }}
-          ssh -o 'StrictHostKeyChecking no' -p ${{ env.SSH_PORT }} ${SSH_CONNECT}
+          ssh -o 'StrictHostKeyChecking no' -o 'PubkeyAuthentication yes' -p ${{ env.SSH_PORT }} ${SSH_CONNECT}
           ssh -p ${{ env.SSH_PORT }} ${SSH_CONNECT} "\
               cd /mnt/borja/borja-ops-nginx-loadbalancer && \
               sudo git reset --hard HEAD && \
